@@ -1,20 +1,12 @@
-import "./style_spinner.css";
+import "./style_loader.css";
+import LoaderGif from "../../Images/star-wars-loading.gif";
 
-const Spinner = () => {
+const Loader = () => {
     return (
-        <div className="loadingio-spinner-double-ring-qtvqibjdt3">
-            <div className="ldio-h0knq6t2aal">
-                <div></div>
-                <div></div>
-                <div>
-                    <div></div>
-                </div>
-                <div>
-                    <div></div>
-                </div>
-            </div>
+        <div className="loader">
+            <img src={`${LoaderGif}?${Date.now()}`} alt="Loader-animation"/>
         </div>
     );
 }
 
-export default Spinner;
+export default Loader;
