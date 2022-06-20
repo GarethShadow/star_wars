@@ -6,9 +6,7 @@ import ErrorIndicator from "../ErrorIndicator";
 import PlanetView from "../PlanetView";
 
 const RandomPlanet = () => {
-    const [planet, setPlanet] = useState({});
-    const [loader, setLoader] = useState(true);
-    const [error, setError] = useState(false);
+    const [planet, setPlanet] = useState({planet: {}, loader: true, error: false});
 
     useEffect(() => {
         const id = Math.floor(Math.random() * 20) + 3;
@@ -19,15 +17,22 @@ const RandomPlanet = () => {
                 interval = setInterval(() => {
                     if (mount) {
                         setPlanet({
-                            ...planet
+                            planet: {...planet},
+                            loader: false,
+                            error: false
                         });
-                        setLoader(false);
                     }
                 }, 2500);
             })
             .catch(() => {
-                setError(true);
-                setLoader(false);
+                if(mount) {
+                    setPlanet({
+                        planet: {},
+                        loader: false,
+                        error: true
+                    });
+                }
+
             });
         return () => {
             mount = false;
@@ -35,9 +40,7 @@ const RandomPlanet = () => {
         };
     }, [planet]);
 
-    console.log("Planet >>> ", planet.id);
-
-    if (loader) {
+    if (planet.loader) {
         return (
             <div className="random-planet jumbotron rounded">
                 <Loader/>
@@ -45,7 +48,7 @@ const RandomPlanet = () => {
         );
     }
 
-    if (error) {
+    if (planet.error) {
         return (
             <div className="random-planet jumbotron rounded">
                 <ErrorIndicator/>
@@ -55,7 +58,7 @@ const RandomPlanet = () => {
 
     return (
         <div className="random-planet jumbotron rounded">
-            <PlanetView planet={planet}/>
+            <PlanetView planet={planet.planet}/>
         </div>
 
     );
