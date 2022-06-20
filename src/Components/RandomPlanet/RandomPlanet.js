@@ -9,9 +9,9 @@ const RandomPlanet = () => {
     const [planet, setPlanet] = useState({planet: {}, loader: true, error: false});
 
     useEffect(() => {
-        const id = Math.floor(Math.random() * 20) + 3;
         let mount = true;
         let interval = null;
+        const id = Math.floor(Math.random() * 20) + 3;
         api.getPlanet(id)
             .then((planet) => {
                 interval = setInterval(() => {

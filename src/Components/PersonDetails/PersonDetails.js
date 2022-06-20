@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {api} from "../../services/swapi-service";
 import "./style_persom_details.css";
+import Loader from "../Loader";
 
 const PersonDetails = (props) => {
     const {personId} = props;
@@ -32,8 +33,12 @@ const PersonDetails = (props) => {
                 })
     }, [personId]);
 
-    if (!person) {
-        return <span>Select a person roma a list</span>
+    if (person.loading) {
+        return (
+            <ul className="item-list list-group">
+                <Loader/>
+            </ul>
+        )
     }
 
     return (
