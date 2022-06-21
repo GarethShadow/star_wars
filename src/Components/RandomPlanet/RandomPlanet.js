@@ -25,7 +25,7 @@ const RandomPlanet = () => {
                 }, 2500);
             })
             .catch(() => {
-                if(mount) {
+                if (mount) {
                     setPlanet({
                         planet: {},
                         loader: false,
@@ -60,7 +60,6 @@ const RandomPlanet = () => {
         <div className="random-planet jumbotron rounded">
             <PlanetView planet={planet.planet}/>
         </div>
-
     );
 };
 

@@ -5,6 +5,8 @@ import RandomPlanet from "../RandomPlanet";
 import ItemList from "../ItemList";
 import PersonDetails from "../PersonDetails";
 import Button from "../Button";
+import ErrorButton from "../ErrorButton";
+import ErrorBoundry from "../ErroBoundry";
 
 const App = () => {
     const [showRandomPlanet, setShowRandomPlanet] = useState(true);
@@ -17,21 +19,24 @@ const App = () => {
     }
 
     return (
-        <div className="app__star-wars">
-            <Header/>
-            {showRandomPlanet? (
-                <RandomPlanet/>
-            ) : null}
-            <Button text={'Toggle Random Planet'} functionClick={toggleRandomPlanet}/>
-            <div className="row mb2">
-                <div className="col-md-6">
-                    <ItemList onItemSelectir={onPersonSelected}/>
-                </div>
-                <div className="col-md-6">
-                    <PersonDetails personId={selectedPerson}/>
+        <ErrorBoundry>
+            <div className="app__star-wars">
+                <Header/>
+                {showRandomPlanet? (
+                    <RandomPlanet/>
+                ) : null}
+                <Button text={'Toggle Random Planet'} functionClick={toggleRandomPlanet}/>
+                <ErrorButton />
+                <div className="row mb2">
+                    <div className="col-md-6">
+                        <ItemList onItemSelectir={onPersonSelected}/>
+                    </div>
+                    <div className="col-md-6">
+                        <PersonDetails personId={selectedPerson}/>
+                    </div>
                 </div>
             </div>
-        </div>
+        </ErrorBoundry>
     );
 };
 
