@@ -1,31 +1,28 @@
-import React, {useEffect, useRef, useState} from "react";
-import {api} from "../../services/swapi-service";
+import React, {useEffect, useState} from "react";
 import "./style_item_list.css";
 import Loader from "../Loader";
 import ErrorIndicator from "../ErrorIndicator";
 
-const ItemList = ({onItemSelectir}) => {
-    const [peopleList, setPeopleList] = useState({people: [], loading: true, error: false});
+const ItemList = ({getData, onItemSelectir}) => {
+    const [itemList, setItemList] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false)
 
     useEffect(() => {
-        api.getAllPersons()
-            .then((people) => {
-                setPeopleList({
-                    people: people,
-                    loading: false,
-                    error: false
-                });
+        getData()
+            .then((itemList) => {
+                setItemList(itemList);
+                setLoading(false);
+                setError(false);
             })
             .catch(() => {
-                setPeopleList({
-                    people: [],
-                    loading: false,
-                    error: true
-                })
+                setItemList(null);
+                setLoading(false);
+                setError(true);
             })
     }, []);
 
-    if (peopleList.loading) {
+    if (loading) {
         return (
             <ul className="item-list list-group">
                 <Loader/>
@@ -33,7 +30,7 @@ const ItemList = ({onItemSelectir}) => {
         );
     }
 
-    if (peopleList.error) {
+    if (error) {
         return (
             <div>
                 <ErrorIndicator />
@@ -43,7 +40,7 @@ const ItemList = ({onItemSelectir}) => {
 
     return (
         <ul className="item-list list-group">
-            {peopleList.people.map((item) => (
+            {itemList.map((item) => (
                 <li className="list-group-item" key={item.id} onClick={() => onItemSelectir(item.id)}>
                     {item.name}
                 </li>

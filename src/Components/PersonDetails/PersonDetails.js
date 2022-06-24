@@ -19,21 +19,21 @@ const PersonDetails = (props) => {
     } = person.people;
 
     useEffect(() => {
-            api.getPerson(personId)
-                .then((person) => {
-                    setPerson({
-                        people: person,
-                        loading: false,
-                        error: false
-                    });
+        api.getPerson(personId)
+            .then((person) => {
+                setPerson({
+                    people: person,
+                    loading: false,
+                    error: false
+                });
+            })
+            .catch(() => {
+                setPerson({
+                    people: [],
+                    loading: false,
+                    error: true
                 })
-                .catch(() => {
-                    setPerson({
-                        people: [],
-                        loading: false,
-                        error: true
-                    })
-                })
+            })
     }, [personId]);
 
     if (person.loading) {
@@ -44,8 +44,8 @@ const PersonDetails = (props) => {
         )
     }
 
-    if(person.error) {
-        return(
+    if (person.error) {
+        return (
             <div>
                 <ErrorIndicator/>
             </div>
@@ -53,31 +53,29 @@ const PersonDetails = (props) => {
     }
 
     return (
-        <ErrorBoundry>
-            <div className="person-details card">
-                <img className="person-image"
-                     src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}/>
+        <div className="person-details card">
+            <img className="person-image"
+                 src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}/>
 
-                <div className="card-body">
-                    <h4>{name} {id}</h4>
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item">
-                            <span className="term">Gender</span>
-                            <span>{gender}</span>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="term">Birth Year</span>
-                            <span>{birthYear}</span>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="term">Eye Color</span>
-                            <span>{eyeColor}</span>
-                        </li>
-                    </ul>
-                    <ErrorButton/>
-                </div>
+            <div className="card-body">
+                <h4>{name}</h4>
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                        <span className="term">Gender</span>
+                        <span>{gender}</span>
+                    </li>
+                    <li className="list-group-item">
+                        <span className="term">Birth Year</span>
+                        <span>{birthYear}</span>
+                    </li>
+                    <li className="list-group-item">
+                        <span className="term">Eye Color</span>
+                        <span>{eyeColor}</span>
+                    </li>
+                </ul>
+                <ErrorButton/>
             </div>
-        </ErrorBoundry>
+        </div>
     )
 };
 
