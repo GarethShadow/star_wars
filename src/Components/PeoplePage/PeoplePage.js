@@ -1,21 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
+import {api} from "../../services/swapi-service";
 import ItemList from "../ItemList";
-import PersonDetails from "../PersonDetails";
-import ErrorBoundry from "../ErroBoundry";
+import ItemDetails from "../ItemDetails";
+import Row from "../Row";
+import {Record} from "../ItemDetails/ItemDetails";
 
-const PeoplePage = ({getData, onItemSelectir, personId}) => {
+const PeoplePage = ({onItemSelectir, personId}) => {
+    const renderItem = ({name, gender, birthYear}) => {
+        return (<span>{name} ({gender}, {birthYear})</span>);
+    }
+
+    const itemList = (<ItemList getData={api.getAllPersons} onItemSelectir={onItemSelectir}>{renderItem}</ItemList>);
+    const personDetails = <ItemDetails getData={api.getPerson} itemId={personId} getImageUrl={api.getPersonImage}>
+        <Record field="Gender" label="Model"/>
+        <Record field="Birth Year" label="Length"/>
+        <Record field="Eye Color" label="Cost"/>
+    </ItemDetails>;
 
     return (
-        <ErrorBoundry>
-            <div className="row mb2">
-                <div className="col-md-6">
-                    <ItemList getData={getData} onItemSelectir={onItemSelectir}/>
-                </div>
-                <div className="col-md-6">
-                    <PersonDetails personId={personId}/>
-                </div>
-            </div>
-        </ErrorBoundry>
+        <Row left={itemList} right={personDetails}/>
 
     );
 };

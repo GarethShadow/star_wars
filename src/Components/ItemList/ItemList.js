@@ -3,10 +3,13 @@ import "./style_item_list.css";
 import Loader from "../Loader";
 import ErrorIndicator from "../ErrorIndicator";
 
-const ItemList = ({getData, onItemSelectir}) => {
+const ItemList = (props) => {
+    const {getData, onItemSelectir, children: renderLabel} = props;
+
     const [itemList, setItemList] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(false);
+
 
     useEffect(() => {
         getData()
@@ -42,7 +45,7 @@ const ItemList = ({getData, onItemSelectir}) => {
         <ul className="item-list list-group">
             {itemList.map((item) => (
                 <li className="list-group-item" key={item.id} onClick={() => onItemSelectir(item.id)}>
-                    {item.name}
+                    {renderLabel(item)}
                 </li>
             ))}
         </ul>

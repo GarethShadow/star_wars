@@ -10,7 +10,7 @@ export default class SwapiService {
         }
 
         return res.json();
-    }
+    };
 
     getAllPersons = async () => {
         const res = await this.getResource(`/people/`);
@@ -20,27 +20,44 @@ export default class SwapiService {
     getPerson = async (id) => {
         const person = await this.getResource(`/people/${id}/`);
         return this._transformPerson(person);
-    }
+    };
 
     getAllPlanets = async () => {
         const res = await this.getResource(`/planets/`);
         return res.results.map((item) => this._transformPlanet(item)).slice();
-    }
+    };
 
      getPlanet = async (id) => {
         const planet = await this.getResource(`/planets/${id}/`);
         return this._transformPlanet(planet);
-    }
+    };
 
     getAllStarships = async () => {
         const res = await this.getResource(`/starships/`);
         return res.results.map((item) => this._transformStarship(item)).slice();
-    }
+    };
+
+    getStarship = async (id) => {
+        const starship = await this.getResource(`/starships/${id}`);
+        return this._transformStarship(starship);
+    };
+
+    getPersonImage = ({id}) => {
+        return `${this._imageBase}/characters/${id}.jpg`;
+    };
+
+    getStarshipImage = ({id}) => {
+        return `${this._imageBase}/starships/${id}.jpg`;
+    };
+
+    getPlanetImage = ({id}) => {
+        return `${this._imageBase}/planets/${id}.jpg`;
+    };
 
     _extractId = (item) => {
         const idRegExp = /\/([0-9]*)\/$/;
         return item.url.match(idRegExp)[1];
-    }
+    };
 
     _transformPlanet = (planet) => {
         return {
@@ -50,7 +67,7 @@ export default class SwapiService {
             rotationPeriod: planet.rotation_period,
             diameter: planet.diameter,
         }
-    }
+    };
 
     _transformPerson = (person) => {
         return {
@@ -60,7 +77,7 @@ export default class SwapiService {
             birthYear: person.birth_year,
             eyeColor: person.eye_color
         }
-    }
+    };
 
     _transformStarship = (starship) => {
         return {

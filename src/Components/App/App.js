@@ -3,25 +3,41 @@ import "./style_app.css";
 import Header from "../Header";
 import RandomPlanet from "../RandomPlanet";
 import ItemList from "../ItemList";
-import PersonDetails from "../PersonDetails";
+import PersonDetails from "../ItemDetails";
 import Button from "../Button";
 import ErrorButton from "../ErrorButton";
 import ErrorBoundry from "../ErroBoundry";
 import {api} from "../../services/swapi-service";
 import PeoplePage from "../PeoplePage";
+import ItemDetails, {Record} from "../ItemDetails/ItemDetails";
+import Row from "../Row";
 
 const App = () => {
     const [showRandomPlanet, setShowRandomPlanet] = useState(true);
     const [selectedPerson, setSelectedPerson] = useState(1);
+    const {
+        getPerson,
+        getStarship,
+        getPersonImage,
+        getStarshipImage
+    } = api;
 
     const toggleRandomPlanet = () => setShowRandomPlanet(!showRandomPlanet);
 
     const onPersonSelected = (id) => {
         setSelectedPerson(id);
     }
-    console.log('Planet', api.getAllPlanets());
-    console.log('Person', api.getAllPersons());
-    console.log('getAllStarships', api.getAllStarships());
+
+    const personDetails = (<ItemDetails getData={getPerson} itemId={11} getImageUrl={getPersonImage}>
+        <Record field="gender" label="Gender" />
+        <Record field="eyeColor" label="Eye Color" />
+    </ItemDetails>);
+
+    const starshipDetails = (<ItemDetails getData={getStarship} itemId={5} getImageUrl={getStarshipImage}>
+        <Record field="model" label="Model" />
+        <Record field="length" label="Length" />
+        <Record field="costInCredits" label="Cost" />
+    </ItemDetails>);
 
     return (
         <ErrorBoundry>
@@ -32,25 +48,8 @@ const App = () => {
                 ) : null}
                 <Button text={'Toggle Random Planet'} functionClick={toggleRandomPlanet}/>
                 <ErrorButton/>
-                <PeoplePage getData={api.getAllPersons} onItemSelectir={onPersonSelected} personId={selectedPerson}/>
-                {/*test block*/}
-                <div style={{marginTop: "30px"}} className="row mb2">
-                    <div className="col-md-6">
-                        <ItemList getData={api.getAllPlanets} onItemSelectir={onPersonSelected}/>
-                    </div>
-                    <div className="col-md-6">
-                        Hello Plants
-                    </div>
-                </div>
-
-                <div style={{marginTop: "30px"}} className="row mb2">
-                    <div className="col-md-6">
-                        <ItemList getData={api.getAllStarships} onItemSelectir={onPersonSelected}/>
-                    </div>
-                    <div className="col-md-6">
-                        Hello Starships
-                    </div>
-                </div>
+                <PeoplePage onItemSelectir={onPersonSelected} personId={selectedPerson}/>
+                <Row left={personDetails} right={starshipDetails}/>
             </div>
         </ErrorBoundry>
     );
