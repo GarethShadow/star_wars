@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, Component} from "react";
 import "./style_item_list.css";
 import Loader from "../Loader";
 import ErrorIndicator from "../ErrorIndicator";

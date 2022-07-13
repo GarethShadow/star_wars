@@ -39,6 +39,10 @@ const App = () => {
         <Record field="costInCredits" label="Cost" />
     </ItemDetails>);
 
+    const renderItem = ({name, gender, birthYear}) => {
+        return (<span>{name}</span>);
+    }
+
     return (
         <ErrorBoundry>
             <div className="app__star-wars">
@@ -49,7 +53,12 @@ const App = () => {
                 <Button text={'Toggle Random Planet'} functionClick={toggleRandomPlanet}/>
                 <ErrorButton/>
                 <PeoplePage onItemSelectir={onPersonSelected} personId={selectedPerson}/>
-                <Row left={personDetails} right={starshipDetails}/>
+                {/*<Row left={personDetails} right={starshipDetails}/>*/}
+                <ItemList getData={api.getAllPersons} onItemSelectir={onPersonSelected}>{renderItem}</ItemList>
+                <div style={{marginTop: "20px"}}/>
+                <ItemList getData={api.getAllPlanets} onItemSelectir={onPersonSelected}>{renderItem}</ItemList>
+                <div style={{marginTop: "20px"}}/>
+                <ItemList getData={api.getAllStarships} onItemSelectir={onPersonSelected}>{renderItem}</ItemList>
             </div>
         </ErrorBoundry>
     );
