@@ -1,3 +1,1 @@
-import RandomPlanet from "./RandomPlanet";
-
-export default RandomPlanet;
+export {default} from "./RandomPlanet";

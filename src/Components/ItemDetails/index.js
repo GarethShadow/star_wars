@@ -1,3 +1,1 @@
-import ItemDetails from "./ItemDetails";
-
- export default ItemDetails;
+export {default} from "./ItemDetails";

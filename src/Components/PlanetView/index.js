@@ -1,3 +1,1 @@
-import PlanetView from "./PlanetView";
-
-export default PlanetView;
+export {default} from "./PlanetView";
