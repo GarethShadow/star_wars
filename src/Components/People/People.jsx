@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Row from "../Row";
 import {useItemsList} from "../../hooks/useItemsList";
 import {getAllPeople, getPerson, getPersonImage} from "../../api/api";
@@ -15,6 +15,7 @@ const People = () => {
         isLoading,
         error
     } = useItemsList(getAllPeople);
+
     const {
         details,
         image,

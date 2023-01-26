@@ -58,11 +58,11 @@ export const getAllPlanets = async () => {
 export const getPlanet = async (id) => {
     const res = await getResource(`/planets/${id}/`);
     return transformPlanet(res);
-}
+};
 
 export const getPlanetImage = (id) => {
     return `${_imageBase}/planets/${id}.jpg`
-}
+};
 
 const transformStarship = (starship) => {
     return {
@@ -86,9 +86,9 @@ export const getAllStarships = async () => {
 export const getStarship = async (id) => {
     const res = await getResource(`/starships/${id}/`);
     return transformStarship(res);
-}
+};
 
 export const getStarsipImage = (id) => {
     return `${_imageBase}/starships/${id}.jpg`;
 
-}
+};
