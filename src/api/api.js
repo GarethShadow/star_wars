@@ -52,7 +52,7 @@ const transformPlanet = (planet) => {
 
 export const getAllPlanets = async () => {
     const res = await getResource("/planets/")
-    return res.results;
+    return res.results.map((item) => transformPlanet(item)).slice();
 };
 
 export const getPlanet = async (id) => {
@@ -60,12 +60,35 @@ export const getPlanet = async (id) => {
     return transformPlanet(res);
 }
 
+export const getPlanetImage = (id) => {
+    return `${_imageBase}/planets/${id}.jpg`
+}
+
+const transformStarship = (starship) => {
+    return {
+        id: extractId(starship),
+        name: starship.name,
+        model: starship.model,
+        manufacturer: starship.manufacturer,
+        costInCredits: starship.cost_in_credits,
+        length: starship.length,
+        crew: starship.crew,
+        passengers: starship.passengers,
+        cargoCapacity: starship.cargo_capacity
+    }
+};
+
 export const getAllStarships = async () => {
     const res = await getResource("/starships/")
-    return res.results;
+    return res.results.map((item) => transformStarship(item)).slice();
 };
 
 export const getStarship = async (id) => {
     const res = await getResource(`/starships/${id}/`);
-    return res;
+    return transformStarship(res);
+}
+
+export const getStarsipImage = (id) => {
+    return `${_imageBase}/starships/${id}.jpg`;
+
 }

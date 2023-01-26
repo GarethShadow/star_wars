@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
-import {getPersonImage} from "../api/api";
 
-export const useItemDetails = (getData, id) => {
+export const useItemDetails = (getData, getImage, id) => {
     const [details, setDetails] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -11,7 +10,7 @@ export const useItemDetails = (getData, id) => {
         getData(id)
             .then((item) => {
                 setDetails(item);
-                setImage(getPersonImage(item.id.toString()))
+                setImage(getImage(item.id.toString()))
                 setIsLoading(false);
                 setError(false);
             })

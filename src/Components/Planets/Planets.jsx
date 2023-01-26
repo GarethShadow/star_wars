@@ -1,31 +1,31 @@
-import React, {useEffect, useState} from "react";
-import Row from "../Row";
+import React, {useState} from "react";
 import {useItemsList} from "../../hooks/useItemsList";
-import {getAllPeople, getPerson, getPersonImage} from "../../api/api";
+import {getAllPlanets, getPlanet, getPlanetImage} from "../../api/api";
 import {useItemDetails} from "../../hooks/useItemDetails";
+import Row from "../Row";
 import ItemList from "../ItemList";
 import ItemDetails from "../ItemDetails";
 
-
-const People = () => {
+const Planets = () => {
     const [selectedId, setSelectedId] = useState(1);
 
     const {
         itemList,
         isLoading,
         error
-    } = useItemsList(getAllPeople);
+    } = useItemsList(getAllPlanets);
+
     const {
         details,
         image,
         isLoading: isLoadingDetails,
         error: errorDetails
-    } = useItemDetails(getPerson, getPersonImage, selectedId);
+    } = useItemDetails(getPlanet, getPlanetImage, selectedId);
+
 
     const onItemSelected = (id) => {
         setSelectedId(id);
     }
-
 
     return (
         <Row
@@ -39,13 +39,12 @@ const People = () => {
             }
             childrenDetails={
                 <ItemDetails
-                    title={details.name}
-                    itemTop={"Gender:"}
-                    itemMiddle={"Birth Year:"}
-                    itemBottom={"Eye Color:"}
-                    labelTop={details.gender}
-                    labelMiddle={details.birthYear}
-                    labelBottom={details.eyeColor}
+                    itemTop={"Population:"}
+                    itemMiddle={"Rotation Period:"}
+                    itemBottom={"Diameter:"}
+                    labelTop={details.population}
+                    labelMiddle={details.rotationPeriod}
+                    labelBottom={details.diameter}
                     image={image}
                     loading={isLoadingDetails}
                     error={errorDetails}
@@ -55,4 +54,4 @@ const People = () => {
     );
 };
 
-export default People;
+export default Planets;

@@ -5,7 +5,18 @@ import "./ItemDetails.styles.css";
 import ErrorBoundry from "../ErrorBoundry";
 import ErrorButton from "../ErrorButton";
 
-const ItemDetails = ({data, loading, error, image}) => {
+const ItemDetails = ({
+    title,
+    itemTop,
+    itemMiddle,
+    itemBottom,
+    labelTop,
+    labelMiddle,
+    labelBottom,
+    loading,
+    error,
+    image
+}) => {
 
     if(loading) {
         return (
@@ -29,19 +40,19 @@ const ItemDetails = ({data, loading, error, image}) => {
                 <img className="person-image" src={image}/>
 
                 <div className="card-body">
-                    <h4>{data.name}</h4>
+                    <h4>{title}</h4>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">
-                            <span className="term">Gender:</span>
-                            <span>{data.gender}</span>
+                            <span className="term">{itemTop}</span>
+                            <span>{labelTop}</span>
                         </li>
                         <li className="list-group-item">
-                            <span className="term">Birth Year:</span>
-                            <span>{data.birthYear}</span>
+                            <span className="term">{itemMiddle}</span>
+                            <span>{labelMiddle}</span>
                         </li>
                         <li className="list-group-item">
-                            <span className="term">Eye Color:</span>
-                            <span>{data.eyeColor}</span>
+                            <span className="term">{itemBottom}</span>
+                            <span>{labelBottom}</span>
                         </li>
                     </ul>
                     <ErrorButton/>

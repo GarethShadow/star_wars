@@ -1,31 +1,30 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Row from "../Row";
+import {getAllStarships, getStarship, getStarsipImage} from "../../api/api";
 import {useItemsList} from "../../hooks/useItemsList";
-import {getAllPeople, getPerson, getPersonImage} from "../../api/api";
 import {useItemDetails} from "../../hooks/useItemDetails";
 import ItemList from "../ItemList";
 import ItemDetails from "../ItemDetails";
 
-
-const People = () => {
-    const [selectedId, setSelectedId] = useState(1);
+const Starships = () => {
+    const [selectedId, setSelectedId] = useState(2);
 
     const {
         itemList,
         isLoading,
         error
-    } = useItemsList(getAllPeople);
+    } = useItemsList(getAllStarships);
     const {
         details,
         image,
         isLoading: isLoadingDetails,
         error: errorDetails
-    } = useItemDetails(getPerson, getPersonImage, selectedId);
+    } = useItemDetails(getStarship, getStarsipImage, selectedId);
+
 
     const onItemSelected = (id) => {
         setSelectedId(id);
     }
-
 
     return (
         <Row
@@ -40,12 +39,12 @@ const People = () => {
             childrenDetails={
                 <ItemDetails
                     title={details.name}
-                    itemTop={"Gender:"}
-                    itemMiddle={"Birth Year:"}
-                    itemBottom={"Eye Color:"}
-                    labelTop={details.gender}
-                    labelMiddle={details.birthYear}
-                    labelBottom={details.eyeColor}
+                    itemTop={"Model:"}
+                    itemMiddle={"Length:"}
+                    itemBottom={"Cost:"}
+                    labelTop={details.model}
+                    labelMiddle={details.length}
+                    labelBottom={details.costInCredits}
                     image={image}
                     loading={isLoadingDetails}
                     error={errorDetails}
@@ -53,6 +52,6 @@ const People = () => {
             }
         />
     );
-};
+}
 
-export default People;
+export default Starships;

@@ -5,6 +5,8 @@ import RandomPlanet from "../Components/RandomPlanet";
 import Button from "../Components/Buttom/Button";
 import ErrorButton from "../Components/ErrorButton";
 import People from "../Components/People";
+import Planets from "../Components/Planets";
+import Starships from "../Components/Starships";
 import "./App.styles.css";
 
 const App = () => {
@@ -22,6 +24,8 @@ const App = () => {
                 <Button text={"Toggle Random Planet"} handleClick={toggleRandomPlanet}/>
                 <ErrorButton/>
                 <People/>
+                <Planets/>
+                <Starships/>
             </ErrorBoundry>
         </div>
     );

@@ -24,7 +24,7 @@ const ItemList = ({data, loading, error, handleClick}) => {
         <ul className="item-list list-group">
             {data.map((item) => (
                 <li className="list-group-item" key={item.id} onClick={() => handleClick(item.id)}>
-                    {item.name + ", "}  {item.gender + ", "} {item.birthYear + ", "}
+                    {item.name}
                 </li>
             ))}
         </ul>
