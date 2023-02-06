@@ -15,7 +15,12 @@ const Starships = () => {
         error
     } = useItemsList(getAllStarships);
     const {
-        details,
+        details: {
+            name,
+            model,
+            length,
+            costInCredits
+        },
         image,
         isLoading: isLoadingDetails,
         error: errorDetails
@@ -38,13 +43,13 @@ const Starships = () => {
             }
             childrenDetails={
                 <ItemDetails
-                    title={details.name}
+                    title={name}
                     itemTop={"Model:"}
                     itemMiddle={"Length:"}
                     itemBottom={"Cost:"}
-                    labelTop={details.model}
-                    labelMiddle={details.length}
-                    labelBottom={details.costInCredits}
+                    labelTop={model}
+                    labelMiddle={length}
+                    labelBottom={costInCredits}
                     image={image}
                     loading={isLoadingDetails}
                     error={errorDetails}

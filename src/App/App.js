@@ -4,10 +4,8 @@ import Header from "../Components/Header";
 import RandomPlanet from "../Components/RandomPlanet";
 import Button from "../Components/Buttom/Button";
 import ErrorButton from "../Components/ErrorButton";
-import People from "../Components/People";
-import Planets from "../Components/Planets";
-import Starships from "../Components/Starships";
 import "./App.styles.css";
+import AppRouter from "../AppRouter";
 
 const App = () => {
     const [showRandomPlanet, setShowRandomPlanet] = useState(true);
@@ -23,9 +21,7 @@ const App = () => {
                 }
                 <Button text={"Toggle Random Planet"} handleClick={toggleRandomPlanet}/>
                 <ErrorButton/>
-                <People/>
-                <Planets/>
-                <Starships/>
+                <AppRouter />
             </ErrorBoundry>
         </div>
     );

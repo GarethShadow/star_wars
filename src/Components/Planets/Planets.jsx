@@ -16,7 +16,12 @@ const Planets = () => {
     } = useItemsList(getAllPlanets);
 
     const {
-        details,
+        details : {
+            name,
+            population,
+            rotationPeriod,
+            diameter
+        },
         image,
         isLoading: isLoadingDetails,
         error: errorDetails
@@ -39,12 +44,13 @@ const Planets = () => {
             }
             childrenDetails={
                 <ItemDetails
+                    title={name}
                     itemTop={"Population:"}
                     itemMiddle={"Rotation Period:"}
                     itemBottom={"Diameter:"}
-                    labelTop={details.population}
-                    labelMiddle={details.rotationPeriod}
-                    labelBottom={details.diameter}
+                    labelTop={population}
+                    labelMiddle={rotationPeriod}
+                    labelBottom={diameter}
                     image={image}
                     loading={isLoadingDetails}
                     error={errorDetails}

@@ -1,20 +1,21 @@
 import React from "react";
 import Logo from "../../Assets/Images/Star_Wars_logo-1.png";
 import "./Header.styles.css";
+import paths from "../../AppRouter/paths";
 
 const Header = () => {
     const menuData = [
         {
         label: "People",
-        link: "/"
+        link: paths.home
         },
         {
             label: "Planets",
-            link: "/"
+            link: paths.planets
         },
         {
             label: "Starships",
-            link: "/"
+            link: paths.starships
         },
     ]
 

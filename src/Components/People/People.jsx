@@ -17,7 +17,12 @@ const People = () => {
     } = useItemsList(getAllPeople);
 
     const {
-        details,
+        details: {
+            name,
+            gender,
+            birthYear,
+            eyeColor
+        },
         image,
         isLoading: isLoadingDetails,
         error: errorDetails
@@ -40,13 +45,13 @@ const People = () => {
             }
             childrenDetails={
                 <ItemDetails
-                    title={details.name}
+                    title={name}
                     itemTop={"Gender:"}
                     itemMiddle={"Birth Year:"}
                     itemBottom={"Eye Color:"}
-                    labelTop={details.gender}
-                    labelMiddle={details.birthYear}
-                    labelBottom={details.eyeColor}
+                    labelTop={gender}
+                    labelMiddle={birthYear}
+                    labelBottom={eyeColor}
                     image={image}
                     loading={isLoadingDetails}
                     error={errorDetails}
