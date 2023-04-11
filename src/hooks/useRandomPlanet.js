@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 export const useRandomPlanet = (getData) => {
+    
     const [result, setResult] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -36,4 +37,5 @@ export const useRandomPlanet = (getData) => {
 
     return {result, isLoading, error}
 };
+
 

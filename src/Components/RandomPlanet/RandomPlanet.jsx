@@ -9,6 +9,7 @@ import {useRandomPlanet} from "../../hooks/useRandomPlanet";
 const RandomPlanet = () => {
     const {result, isLoading, error} = useRandomPlanet(getPlanet);
 
+
     if(isLoading) {
         return (
             <div className="random-planet jumbotron rounded">

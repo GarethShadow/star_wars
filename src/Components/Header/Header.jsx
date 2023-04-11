@@ -7,7 +7,7 @@ const Header = () => {
     const menuData = [
         {
         label: "People",
-        link: paths.home
+        link: paths.people
         },
         {
             label: "Planets",
