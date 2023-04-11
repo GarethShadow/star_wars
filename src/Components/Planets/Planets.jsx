@@ -6,34 +6,34 @@ import ItemList from "../ItemList";
 import PlanetsDetails from "../Details/PlanetDetails";
 
 const Planets = () => {
-    const [selectedId, setSelectedId] = useState(1);
+  const [selectedId, setSelectedId] = useState(1);
 
-    const {
-        itemList,
-        isLoading,
-        error
-    } = useItemsList(getAllPlanets);
+  const {
+    itemList,
+    isLoading,
+    error
+  } = useItemsList(getAllPlanets);
 
 
-    const onItemSelected = (id) => {
-        setSelectedId(id);
-    }
+  const onItemSelected = (id) => {
+    setSelectedId(id);
+  }
 
-    return (
-        <Row
-            childrenList={
-                <ItemList
-                    data={itemList}
-                    loading={isLoading}
-                    error={error}
-                    handleClick={onItemSelected}
-                />
-            }
-            childrenDetails={
-                <PlanetsDetails id={selectedId}/>
-            }
+  return (
+    <Row
+      childrenList={
+        <ItemList
+          data={itemList}
+          loading={isLoading}
+          error={error}
+          handleClick={onItemSelected}
         />
-    );
+      }
+      childrenDetails={
+        <PlanetsDetails id={selectedId}/>
+      }
+    />
+  );
 };
 
 export default Planets;

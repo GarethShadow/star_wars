@@ -7,34 +7,34 @@ import PeopleDetails from "../Details/PersonDetails";
 
 
 const People = () => {
-    const [selectedId, setSelectedId] = useState(1);
+  const [selectedId, setSelectedId] = useState(1);
 
-    const {
-        itemList,
-        isLoading,
-        error
-    } = useItemsList(getAllPeople);
+  const {
+    itemList,
+    isLoading,
+    error
+  } = useItemsList(getAllPeople);
 
-    const onItemSelected = (id) => {
-        setSelectedId(id);
-    }
+  const onItemSelected = (id) => {
+    setSelectedId(id);
+  }
 
 
-    return (
-        <Row
-            childrenList={
-                <ItemList
-                    data={itemList}
-                    loading={isLoading}
-                    error={error}
-                    handleClick={onItemSelected}
-                />
-            }
-            childrenDetails={
-                <PeopleDetails id={selectedId}/>
-            }
+  return (
+    <Row
+      childrenList={
+        <ItemList
+          data={itemList}
+          loading={isLoading}
+          error={error}
+          handleClick={onItemSelected}
         />
-    );
+      }
+      childrenDetails={
+        <PeopleDetails id={selectedId}/>
+      }
+    />
+  );
 };
 
 export default People;

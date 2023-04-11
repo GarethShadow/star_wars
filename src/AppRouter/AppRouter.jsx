@@ -11,17 +11,17 @@ import StarshipDetailsPage from "../pages/StarshipDetailsPage";
 
 
 const AppRouter = () => {
-    return (
-        <Routes>
-            <Route element={<HomePage/>} path={paths.home}/>
-            <Route element={<PeoplePage/>}  path={paths.people}/>
-            <Route element={<PlanetsPage/>} path={paths.planets}/>
-            <Route element={<StarshipsPage/>} path={paths.starships}/>
-            <Route element={<PeopleDetailsPage/>} path={`${paths.people}/:id`} />
-            <Route element={<PlanetDetailsPage/>} path={`${paths.planets}/:id`} />
-            <Route element={<StarshipDetailsPage/>} path={`${paths.starships}/:id`} />
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route element={<HomePage/>} path={paths.home}/>
+      <Route element={<PeoplePage/>} path={paths.people}/>
+      <Route element={<PlanetsPage/>} path={paths.planets}/>
+      <Route element={<StarshipsPage/>} path={paths.starships}/>
+      <Route element={<PeopleDetailsPage/>} path={`${paths.people}/:id`}/>
+      <Route element={<PlanetDetailsPage/>} path={`${paths.planets}/:id`}/>
+      <Route element={<StarshipDetailsPage/>} path={`${paths.starships}/:id`}/>
+    </Routes>
+  );
 }
 
 export default AppRouter;

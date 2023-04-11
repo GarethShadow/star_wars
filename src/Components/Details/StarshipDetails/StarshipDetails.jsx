@@ -6,37 +6,37 @@ import {useNavigate} from "react-router-dom";
 import paths from "../../../AppRouter/paths";
 
 const StarshipDetails = ({id}) => {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const handleOpenDetails = () => {
-        navigate(`${paths.starships}/${id}`);
-    };
+  const handleOpenDetails = () => {
+    navigate(`${paths.starships}/${id}`);
+  };
 
-    const {
-        details: {
-            name,
-            model,
-            length,
-            costInCredits
-        },
-        image,
-        isLoading: isLoadingDetails,
-        error: errorDetails
-    } = useItemDetails(getStarship, getStarsipImage, id);
+  const {
+    details: {
+      name,
+      model,
+      length,
+      costInCredits
+    },
+    image,
+    isLoading: isLoadingDetails,
+    error: errorDetails
+  } = useItemDetails(getStarship, getStarsipImage, id);
 
-    return <ItemDetails
-        title={name}
-        itemTop={"Model:"}
-        itemMiddle={"Length:"}
-        itemBottom={"Cost:"}
-        labelTop={model}
-        labelMiddle={length}
-        labelBottom={costInCredits}
-        image={image}
-        loading={isLoadingDetails}
-        error={errorDetails}
-        handleClickInfo={handleOpenDetails}
-    />;
+  return <ItemDetails
+    title={name}
+    itemTop={"Model:"}
+    itemMiddle={"Length:"}
+    itemBottom={"Cost:"}
+    labelTop={model}
+    labelMiddle={length}
+    labelBottom={costInCredits}
+    image={image}
+    loading={isLoadingDetails}
+    error={errorDetails}
+    handleClickInfo={handleOpenDetails}
+  />;
 };
 
 export default StarshipDetails;

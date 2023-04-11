@@ -6,37 +6,37 @@ import paths from "../../../AppRouter/paths";
 import {useNavigate} from "react-router-dom";
 
 const PlanetDetails = ({id}) => {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const handleOpenDetails = () => {
-        navigate(`${paths.planets}/${id}`);
-    };
+  const handleOpenDetails = () => {
+    navigate(`${paths.planets}/${id}`);
+  };
 
-    const {
-        details : {
-            name,
-            population,
-            rotationPeriod,
-            diameter
-        },
-        image,
-        isLoading: isLoadingDetails,
-        error: errorDetails
-    } = useItemDetails(getPlanet, getPlanetImage, id);
+  const {
+    details: {
+      name,
+      population,
+      rotationPeriod,
+      diameter
+    },
+    image,
+    isLoading: isLoadingDetails,
+    error: errorDetails
+  } = useItemDetails(getPlanet, getPlanetImage, id);
 
-    return <ItemDetails
-        title={name}
-        itemTop={"Population:"}
-        itemMiddle={"Rotation Period:"}
-        itemBottom={"Diameter:"}
-        labelTop={population}
-        labelMiddle={rotationPeriod}
-        labelBottom={diameter}
-        image={image}
-        loading={isLoadingDetails}
-        error={errorDetails}
-        handleClickInfo={handleOpenDetails}
-    />
+  return <ItemDetails
+    title={name}
+    itemTop={"Population:"}
+    itemMiddle={"Rotation Period:"}
+    itemBottom={"Diameter:"}
+    labelTop={population}
+    labelMiddle={rotationPeriod}
+    labelBottom={diameter}
+    image={image}
+    loading={isLoadingDetails}
+    error={errorDetails}
+    handleClickInfo={handleOpenDetails}
+  />
 }
 
 export default PlanetDetails;
