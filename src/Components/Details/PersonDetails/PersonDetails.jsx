@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useCallback} from "react";
 import ItemDetails from "../ItemDetails";
 import {useItemDetails} from "../../../hooks/useItemDetails";
 import {getPerson, getPersonImage} from "../../../api/api";
-import {useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import paths from "../../../AppRouter/paths";
 
 const PersonDetails = ({id}) => {
-    // const {id} = useParams();
+    const navigate = useNavigate()
+
+    const handleOpenDetails = useCallback(() => {
+        navigate(`${paths.people}/${id}`);
+    }, [id])
 
     const {
         details: {
@@ -31,6 +36,7 @@ const PersonDetails = ({id}) => {
         image={image}
         loading={isLoadingDetails}
         error={errorDetails}
+        handleClickInfo={handleOpenDetails}
     />
 };
 

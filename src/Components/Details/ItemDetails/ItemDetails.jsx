@@ -15,9 +15,9 @@ const ItemDetails = ({
     labelBottom,
     loading,
     error,
-    image
+    image,
+    handleClickInfo
 }) => {
-
     if(loading) {
         return (
             <ul className="item-list list-group">
@@ -55,6 +55,7 @@ const ItemDetails = ({
                             <span>{labelBottom}</span>
                         </li>
                     </ul>
+                    <button onClick={handleClickInfo}>More info</button>
                     <ErrorButton/>
                 </div>
             </div>

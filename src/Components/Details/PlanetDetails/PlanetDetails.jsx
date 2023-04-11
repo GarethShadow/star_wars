@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {useItemDetails} from "../../../hooks/useItemDetails";
 import {getPlanet, getPlanetImage} from "../../../api/api";
 import ItemDetails from "../ItemDetails";
+import paths from "../../../AppRouter/paths";
+import {useNavigate} from "react-router-dom";
 
 const PlanetDetails = ({id}) => {
+    const navigate = useNavigate()
+
+    const handleOpenDetails = useCallback(() => {
+        navigate(`${paths.planets}/${id}`);
+    }, [id])
 
     const {
         details : {
@@ -28,6 +35,7 @@ const PlanetDetails = ({id}) => {
         image={image}
         loading={isLoadingDetails}
         error={errorDetails}
+        handleClickInfo={handleOpenDetails}
     />
 }
 

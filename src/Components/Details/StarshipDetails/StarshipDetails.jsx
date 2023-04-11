@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {useItemDetails} from "../../../hooks/useItemDetails";
 import {getStarship, getStarsipImage} from "../../../api/api";
 import ItemDetails from "../ItemDetails";
+import {useNavigate} from "react-router-dom";
+import paths from "../../../AppRouter/paths";
 
 const StarshipDetails = ({id}) => {
+    const navigate = useNavigate()
+
+    const handleOpenDetails = useCallback(() => {
+        navigate(`${paths.starships}/${id}`);
+    }, [id])
 
     const {
         details: {
@@ -28,6 +35,7 @@ const StarshipDetails = ({id}) => {
         image={image}
         loading={isLoadingDetails}
         error={errorDetails}
+        handleClickInfo={handleOpenDetails}
     />;
 };
 
