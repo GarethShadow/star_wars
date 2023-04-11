@@ -1,7 +1,7 @@
 import React from "react";
 import "./Row.styles.css";
 import ItemList from "../ItemList";
-import ItemDetails from "../ItemDetails";
+import ItemDetails from "../Details/ItemDetails";
 
 const Row = ({childrenList, childrenDetails}) => {
 

@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import Row from "../Row";
 import {useItemsList} from "../../hooks/useItemsList";
-import {getAllPeople, getPerson, getPersonImage} from "../../api/api";
-import {useItemDetails} from "../../hooks/useItemDetails";
+import {getAllPeople} from "../../api/api";
 import ItemList from "../ItemList";
-import ItemDetails from "../ItemDetails";
+import PeopleDetails from "../Details/PersonDetails";
 
 
 const People = () => {
@@ -15,18 +14,6 @@ const People = () => {
         isLoading,
         error
     } = useItemsList(getAllPeople);
-
-    const {
-        details: {
-            name,
-            gender,
-            birthYear,
-            eyeColor
-        },
-        image,
-        isLoading: isLoadingDetails,
-        error: errorDetails
-    } = useItemDetails(getPerson, getPersonImage, selectedId);
 
     const onItemSelected = (id) => {
         setSelectedId(id);
@@ -44,18 +31,7 @@ const People = () => {
                 />
             }
             childrenDetails={
-                <ItemDetails
-                    title={name}
-                    itemTop={"Gender:"}
-                    itemMiddle={"Birth Year:"}
-                    itemBottom={"Eye Color:"}
-                    labelTop={gender}
-                    labelMiddle={birthYear}
-                    labelBottom={eyeColor}
-                    image={image}
-                    loading={isLoadingDetails}
-                    error={errorDetails}
-                />
+                <PeopleDetails id={selectedId}/>
             }
         />
     );

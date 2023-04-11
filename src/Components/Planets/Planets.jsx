@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {useItemsList} from "../../hooks/useItemsList";
-import {getAllPlanets, getPlanet, getPlanetImage} from "../../api/api";
-import {useItemDetails} from "../../hooks/useItemDetails";
+import {getAllPlanets} from "../../api/api";
 import Row from "../Row";
 import ItemList from "../ItemList";
-import ItemDetails from "../ItemDetails";
+import PlanetsDetails from "../Details/PlanetDetails";
 
 const Planets = () => {
     const [selectedId, setSelectedId] = useState(1);
@@ -14,18 +13,6 @@ const Planets = () => {
         isLoading,
         error
     } = useItemsList(getAllPlanets);
-
-    const {
-        details : {
-            name,
-            population,
-            rotationPeriod,
-            diameter
-        },
-        image,
-        isLoading: isLoadingDetails,
-        error: errorDetails
-    } = useItemDetails(getPlanet, getPlanetImage, selectedId);
 
 
     const onItemSelected = (id) => {
@@ -43,18 +30,7 @@ const Planets = () => {
                 />
             }
             childrenDetails={
-                <ItemDetails
-                    title={name}
-                    itemTop={"Population:"}
-                    itemMiddle={"Rotation Period:"}
-                    itemBottom={"Diameter:"}
-                    labelTop={population}
-                    labelMiddle={rotationPeriod}
-                    labelBottom={diameter}
-                    image={image}
-                    loading={isLoadingDetails}
-                    error={errorDetails}
-                />
+                <PlanetsDetails id={selectedId}/>
             }
         />
     );

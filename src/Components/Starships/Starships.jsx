@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import Row from "../Row";
-import {getAllStarships, getStarship, getStarsipImage} from "../../api/api";
+import {getAllStarships} from "../../api/api";
 import {useItemsList} from "../../hooks/useItemsList";
-import {useItemDetails} from "../../hooks/useItemDetails";
 import ItemList from "../ItemList";
-import ItemDetails from "../ItemDetails";
+import StarshipDetails from "../Details/StarshipDetails";
 
 const Starships = () => {
     const [selectedId, setSelectedId] = useState(2);
@@ -14,18 +13,6 @@ const Starships = () => {
         isLoading,
         error
     } = useItemsList(getAllStarships);
-    const {
-        details: {
-            name,
-            model,
-            length,
-            costInCredits
-        },
-        image,
-        isLoading: isLoadingDetails,
-        error: errorDetails
-    } = useItemDetails(getStarship, getStarsipImage, selectedId);
-
 
     const onItemSelected = (id) => {
         setSelectedId(id);
@@ -42,18 +29,7 @@ const Starships = () => {
                 />
             }
             childrenDetails={
-                <ItemDetails
-                    title={name}
-                    itemTop={"Model:"}
-                    itemMiddle={"Length:"}
-                    itemBottom={"Cost:"}
-                    labelTop={model}
-                    labelMiddle={length}
-                    labelBottom={costInCredits}
-                    image={image}
-                    loading={isLoadingDetails}
-                    error={errorDetails}
-                />
+                <StarshipDetails id={selectedId}/>
             }
         />
     );

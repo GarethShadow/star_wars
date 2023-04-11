@@ -1,9 +1,9 @@
 import React from "react";
-import Loader from "../Loader";
-import ErrorIndicator from "../ErrorIndicator"
+import Loader from "../../Loader";
+import ErrorIndicator from "../../ErrorIndicator"
 import "./ItemDetails.styles.css";
-import ErrorBoundry from "../ErrorBoundry";
-import ErrorButton from "../ErrorButton";
+import ErrorBoundry from "../../ErrorBoundry";
+import ErrorButton from "../../ErrorButton";
 
 const ItemDetails = ({
     title,
