@@ -16,7 +16,7 @@ const ItemDetails = ({
     loading,
     error,
     image,
-    handleClickInfo
+    handleClickInfo,
 }) => {
     if(loading) {
         return (
@@ -37,7 +37,7 @@ const ItemDetails = ({
     return (
         <ErrorBoundry>
             <div className="person-details card">
-                <img className="person-image" src={image}/>
+                <img className="person-image" src={image} alt={image}/>
 
                 <div className="card-body">
                     <h4>{title}</h4>

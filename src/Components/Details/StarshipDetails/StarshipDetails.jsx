@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import {useItemDetails} from "../../../hooks/useItemDetails";
 import {getStarship, getStarsipImage} from "../../../api/api";
 import ItemDetails from "../ItemDetails";
@@ -8,9 +8,9 @@ import paths from "../../../AppRouter/paths";
 const StarshipDetails = ({id}) => {
     const navigate = useNavigate()
 
-    const handleOpenDetails = useCallback(() => {
+    const handleOpenDetails = () => {
         navigate(`${paths.starships}/${id}`);
-    }, [id])
+    };
 
     const {
         details: {

@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import ItemDetails from "../ItemDetails";
 import {useItemDetails} from "../../../hooks/useItemDetails";
 import {getPerson, getPersonImage} from "../../../api/api";
@@ -8,9 +8,9 @@ import paths from "../../../AppRouter/paths";
 const PersonDetails = ({id}) => {
     const navigate = useNavigate()
 
-    const handleOpenDetails = useCallback(() => {
+    const handleOpenDetails = () => {
         navigate(`${paths.people}/${id}`);
-    }, [id])
+    };
 
     const {
         details: {
