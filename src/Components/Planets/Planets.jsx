@@ -4,9 +4,14 @@ import {getAllPlanets} from "../../api/api";
 import Row from "../Row";
 import ItemList from "../ItemList";
 import PlanetsDetails from "../Details/PlanetDetails";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import paths from "../../AppRouter/paths";
 
-const Planets = () => {
+const Planets = ({itemSelected}) => {
   const [selectedId, setSelectedId] = useState(1);
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams();
+  const planet = searchParams.get("planet")
 
   const {
     itemList,
@@ -17,6 +22,7 @@ const Planets = () => {
 
   const onItemSelected = (id) => {
     setSelectedId(id);
+    navigate(`${paths.planets}?planet=${id}`);
   }
 
   return (
@@ -30,7 +36,7 @@ const Planets = () => {
         />
       }
       childrenDetails={
-        <PlanetsDetails id={selectedId}/>
+        <PlanetsDetails id={planet ? planet : selectedId}/>
       }
     />
   );
